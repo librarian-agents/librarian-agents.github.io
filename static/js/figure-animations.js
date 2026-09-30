@@ -24,7 +24,7 @@
       // Reassigning a GIF can restart it; leave the current source alone unless it changes.
       if (state.image.getAttribute('src') !== source) state.image.setAttribute('src', source);
       state.figure.classList.toggle('is-playing', playing);
-      state.label.textContent = state.failed ? 'Animation unavailable' : (playing ? 'Show still figure' : 'Play animation');
+      state.label.textContent = state.failed ? 'Animation unavailable' : (playing ? 'Pause' : 'Play');
       state.button.disabled = state.failed;
     }
 
