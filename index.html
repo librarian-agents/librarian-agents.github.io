@@ -11,13 +11,13 @@
   <meta property="og:description"
     content="A project page for Librarian Agents, an RL-trained builder that reorganizes document corpora into reusable filesystem memories for downstream agents." />
   <meta property="og:url" content="https://librarian-agents.github.io/" />
-  <meta property="og:image" content="static/images/overview.png" />
+  <meta property="og:image" content="https://librarian-agents.github.io/static/images/overview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title"
     content="Librarian Agents: Anticipatory Filesystem Construction via Reinforcement Learning" />
   <meta name="twitter:description"
     content="Anticipatory filesystem construction for long-context document reasoning." />
-  <meta name="twitter:image" content="static/images/overview.png" />
+  <meta name="twitter:image" content="https://librarian-agents.github.io/static/images/overview.png" />
   <meta name="keywords"
     content="Librarian Agents, Anticipatory Memory, Filesystem Agents, Reinforcement Learning, RAG, Long Context Reasoning" />
 
@@ -27,9 +27,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="static/css/index.css" />
+  <link rel="stylesheet" href="static/css/figure-animations.css" />
+  <script src="static/js/figure-animations.js" defer></script>
 </head>
 
 <body>
@@ -56,13 +57,18 @@
         </h1>
 
         <div class="publication-authors" aria-label="Authors">
+          <span class="author-block">Anikait Singh<sup>1,*</sup></span>
+          <span class="author-block">Teresa Zhang<sup>1,*</sup></span>
+          <span class="author-block">Yoonho Lee<sup>1,*</sup></span>
+          <span class="author-block">Roshen Sanjay Nair<sup>1</sup></span>
+          <span class="author-block">Aviral Kumar<sup>2</sup></span>
+          <span class="author-block">Chelsea Finn<sup>1</sup></span>
         </div>
 
         <div class="publication-affiliations">
           <span><sup>1</sup>Stanford University</span>
           <span><sup>2</sup>Carnegie Mellon University</span>
           <span><sup>*</sup>Equal contribution</span>
-          <span><sup>&dagger;</sup>Equal advising</span>
         </div>
 
         <p class="publication-summary">
@@ -71,15 +77,10 @@
         </p>
 
         <div class="publication-links" aria-label="Project links">
-          <a class="link-button primary" href="static/pdfs/librarian-models.pdf" target="_blank"
+          <a class="link-button primary" href="static/pdfs/librarian-agents.pdf" target="_blank"
             rel="noopener noreferrer">
-            <span class="icon"><i class="ai ai-arxiv"></i></span>
-            <span>arXiv</span>
-          </a>
-          <a class="link-button" href="https://github.com/librarian-agents/librarian-agents.github.io" target="_blank"
-            rel="noopener noreferrer">
-            <span class="icon"><i class="fab fa-github"></i></span>
-            <span>Code</span>
+            <span class="icon" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span>
+            <span>Paper (PDF)</span>
           </a>
           <a class="link-button" href="mailto:anikait@stanford.edu">
             <span class="icon"><i class="fa-solid fa-envelope"></i></span>
@@ -91,9 +92,24 @@
 
     <section class="teaser">
       <div class="container">
-        <figure class="paper-figure hero-figure">
-          <img src="static/images/overview.png"
-            alt="Overview of the Librarian Agents construction and answering pipeline." />
+        <figure class="paper-figure hero-figure gif-figure" data-gif-figure="teaser">
+          <a class="gif-artwork" href="static/images/overview.png" target="_blank" rel="noopener noreferrer"
+            aria-label="Open full-size still: Overview" style="aspect-ratio: 2200 / 737">
+            <img id="teaser-gif" data-gif-media src="static/images/overview.png"
+              data-gif-src="static/animations/teaser.gif" data-still-src="static/images/overview.png"
+              alt="Overview of the Librarian Agents construction and answering pipeline." width="2200" height="737" decoding="async" />
+            <img class="gif-print-still" src="static/images/overview.png" alt="" aria-hidden="true"
+              width="2200" height="737" loading="lazy" />
+          </a>
+          <figcaption class="gif-controls" aria-label="Overview figure controls">
+            <button class="gif-toggle" data-gif-toggle type="button" aria-controls="teaser-gif">
+              <span class="gif-toggle-icon" aria-hidden="true"></span>
+              <span data-gif-toggle-label>Play animation</span>
+            </button>
+            <a href="static/animations/teaser.gif" download="librarian-agents-teaser.gif">Download GIF</a>
+            <a href="static/images/overview.png" target="_blank" rel="noopener noreferrer">Still figure</a>
+            <span class="gif-status" data-gif-status role="status" hidden></span>
+          </figcaption>
         </figure>
         <p class="figure-caption">
           <strong>Overview.</strong> A builder agent organizes an unstructured corpus into synthetic files, directories,
@@ -109,21 +125,7 @@
           <h2 class="section-title">Abstract</h2>
           <div class="content">
             <p>
-              Reasoning over long document contexts remains a challenge for large language models (LLMs). Standard
-              retrieval methods are inherently reactive, bottlenecking agents with complex, cross-document reasoning at
-              inference time. Existing approaches that pre-compute corpus structure, such as knowledge graphs, often fall
-              short due to their reliance on rigid heuristics such as identifying interdocument relationships via named
-              entity recognition. We propose an anticipatory approach to memory: proactively reorganizing unstructured
-              document corpora to efficiently serve diverse future queries. This pre-computation synthesizes and
-              restructures information within documents in advance, significantly improving an answering agent’s
-              downstream performance and inference efficiency. While agentic scaffolds (e.g., Claude Code) are heavily
-              trained to navigate and extend filesystems while solving the task currently in front of them, they do not
-              pre-construct one in anticipation of future queries that our approach aims to do. We introduce Librarian
-              Agents, a novel framework that restructures unstructured corpora into file-based memories arranged around
-              the operations that LLM agents already perform well, such as reading summaries and following links.
-              Librarian Agents is trained to maximize downstream success rate via end-to-end reinforcement learning.
-              Empirically, Librarian Agents improves accuracy over the best performing baseline by 77% relative
-              improvement on BrowseComp+ and additionally generalizes to out-of-distribution corpora such as BRIGHT.
+              Reasoning over long document contexts remains a challenge for large language models (LLMs). Standard retrieval methods are inherently reactive, bottlenecking agents with complex, cross-document reasoning at inference time. Existing approaches that pre-compute corpus structure, such as knowledge graphs, often fall short due to their reliance on rigid heuristics such as identifying interdocument relationships via named entity recognition. We propose an <em>anticipatory</em> approach to memory: proactively reorganizing unstructured document corpora to efficiently serve diverse future queries. This pre-computation synthesizes and restructures information within documents in advance, significantly improving an answering agent's downstream performance. While agentic scaffolds (e.g., Claude Code) are heavily trained to navigate and extend filesystems while solving the task currently in front of them, they do not pre-construct one in anticipation of future queries that our approach aims to do. We introduce Librarian Agents, a novel framework that restructures unstructured corpora into file-based memories arranged around the operations that LLM agents already perform well, such as reading summaries and following links. Librarian Agents is trained to maximize downstream success rate via end-to-end reinforcement learning. Empirically, Librarian Agents improves accuracy over the best performing baseline by 33 points on BrowseComp+ and additionally generalizes to out-of-distribution corpora such as BRIGHT with a 31 point increase on average.
             </p>
           </div>
         </div>
@@ -136,14 +138,30 @@
           <h2 class="section-title">A Filesystem-Building MDP</h2>
           <p>
             Memory construction is modeled as a finite-horizon MDP. At each step, the builder observes the current
-            filesystem, applies one discrete augmentation, and receives reward when that edit improves the expected
-            success of a frozen answering agent after accounting for construction cost.
+            filesystem and applies one discrete augmentation. GRPO trains the builder using changes in answerability
+            measured every eight turns, together with a terminal answer-correctness reward from a frozen answering agent.
+            The builder never sees the evaluation questions during construction.
           </p>
         </div>
 
-        <figure class="paper-figure wide-figure">
-          <img src="static/images/mdp.png"
-            alt="MDP definition of Librarian Agents with create, merge, delete, and stop actions." />
+        <figure class="paper-figure wide-figure gif-figure" data-gif-figure="builder">
+          <a class="gif-artwork" href="static/images/mdp.png" target="_blank" rel="noopener noreferrer"
+            aria-label="Open full-size still: Builder" style="aspect-ratio: 3164 / 998">
+            <img id="builder-gif" data-gif-media src="static/images/mdp.png"
+              data-gif-src="static/animations/builder.gif" data-still-src="static/images/mdp.png"
+              alt="MDP definition of Librarian Agents with create, merge, delete, and stop actions." width="3164" height="998" loading="lazy" decoding="async" />
+            <img class="gif-print-still" src="static/images/mdp.png" alt="" aria-hidden="true"
+              width="3164" height="998" loading="lazy" />
+          </a>
+          <figcaption class="gif-controls" aria-label="Builder figure controls">
+            <button class="gif-toggle" data-gif-toggle type="button" aria-controls="builder-gif">
+              <span class="gif-toggle-icon" aria-hidden="true"></span>
+              <span data-gif-toggle-label>Play animation</span>
+            </button>
+            <a href="static/animations/builder.gif" download="librarian-agents-builder.gif">Download GIF</a>
+            <a href="static/images/mdp.png" target="_blank" rel="noopener noreferrer">Still figure</a>
+            <span class="gif-status" data-gif-status role="status" hidden></span>
+          </figcaption>
         </figure>
         <p class="figure-caption">
           <strong>MDP definition.</strong> Raw documents remain immutable while the builder constructs an active
@@ -180,179 +198,245 @@
       <div class="container">
         <div class="section-heading">
           <h2 class="section-title">Better Accuracy from Reusable Memory</h2>
-          <p>
-            The evaluation keeps answering agents frozen, so the gains reflect the quality of the constructed memory.
-            Librarian Agents outperform reactive retrieval, reranking, GraphRAG-style precomputation, agentic RAG,
-            autocompaction, and a builder without RL fine-tuning on BrowseComp+, then transfer zero-shot to BRIGHT.
-          </p>
+          <p>The answering agents stay frozen, so the comparisons isolate the usefulness of the constructed memory.
+            A builder trained on BrowseComp+ improves in-domain question answering and transfers to BRIGHT without
+            task-specific fine-tuning.</p>
         </div>
 
         <div class="metric-grid">
-          <article class="metric-card">
-            <div class="metric-number">0.77</div>
-            <div class="metric-label">BrowseComp+ accuracy with Gemini 3.1 Flash Lite</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-number">0.75</div>
-            <div class="metric-label">BrowseComp+ accuracy with frozen Qwen3.5-4B</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-number">77%</div>
-            <div class="metric-label">relative improvement over the strongest baseline</div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-number">0.61</div>
-            <div class="metric-label">average zero-shot accuracy across BRIGHT</div>
-          </article>
+          <article class="metric-card"><div class="metric-number">77%</div><div class="metric-label">BrowseComp+ accuracy<br />Gemini 3.1 Flash Lite</div></article>
+          <article class="metric-card"><div class="metric-number">75%</div><div class="metric-label">BrowseComp+ accuracy<br />Qwen3.5-4B</div></article>
+          <article class="metric-card"><div class="metric-number">52%</div><div class="metric-label">BRIGHT pass@1<br />Zero-shot, three domains</div></article>
+          <article class="metric-card"><div class="metric-number">69%</div><div class="metric-label">BRIGHT pass@4<br />Zero-shot, three domains</div></article>
         </div>
 
-        <div class="table-wrap">
-          <h3>BrowseComp+ Accuracy</h3>
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th>Answering Agent</th>
-                <th>Embedding</th>
-                <th>Rerank</th>
-                <th>GraphRAG</th>
-                <th>Agentic RAG</th>
-                <th>AutoComp.</th>
-                <th>No FT</th>
-                <th>RL Ours</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Qwen3.5-4B, frozen</td>
-                <td>0.42</td>
-                <td>0.44</td>
-                <td>0.26</td>
-                <td>0.44</td>
-                <td>0.02</td>
-                <td>0.25</td>
-                <td class="best">0.75</td>
-              </tr>
-              <tr>
-                <td>Gemini 3.1 Flash Lite</td>
-                <td>0.30</td>
-                <td>0.42</td>
-                <td>0.36</td>
-                <td>0.42</td>
-                <td>0.04</td>
-                <td>0.28</td>
-                <td class="best">0.77</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="table-note">
-            The RL-trained builder is the only method to reach the mid-0.70s for both frozen answering agents. The
-            no-fine-tuning ablation remains far behind, isolating the value of optimizing the builder policy.
-          </p>
+        <h3 class="result-heading">BrowseComp+: learning to build useful memory</h3>
+<figure class="paper-figure ">
+          <a href="static/images/browsecomp.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: BrowseComp+ accuracy across retrieval, caching, and builder baselines for two frozen answering models.">
+            <img src="static/images/browsecomp.png" alt="BrowseComp+ accuracy across retrieval, caching, and builder baselines for two frozen answering models." loading="lazy" decoding="async" width="3495" height="1123" />
+          </a>
+          <figcaption class="figure-caption"><strong>BrowseComp+.</strong> Librarian Agents reach 0.75 accuracy with Qwen3.5-4B and 0.77 with Gemini 3.1 Flash Lite, compared with the strongest baselines at 0.44 and 0.42. This is an average gain of 33 percentage points across the two answerers.</figcaption>
+        </figure>
+        <details class="result-details">
+          <summary>View all BrowseComp+ results</summary>
+<div class="table-scroll" role="region" aria-label="BrowseComp+ accuracy for all methods" tabindex="0">
+<table class="results-table">
+<thead><tr>
+<th scope="col">Answering agent</th>
+<th scope="col">Dense</th>
+<th scope="col">Hybrid</th>
+<th scope="col">Late interaction</th>
+<th scope="col">Rerank</th>
+<th scope="col">GraphRAG</th>
+<th scope="col">Agentic RAG</th>
+<th scope="col">AutoComp.</th>
+<th scope="col">No FT</th>
+<th scope="col">Librarian</th>
+</tr></thead><tbody>
+<tr><th scope="row">Qwen3.5-4B</th>
+<td>0.42</td>
+<td>0.24</td>
+<td>0.38</td>
+<td>0.44</td>
+<td>0.26</td>
+<td>0.44</td>
+<td>0.02</td>
+<td>0.25</td>
+<td class="best">0.75</td>
+</tr>
+<tr><th scope="row">Gemini 3.1 Flash Lite</th>
+<td>0.30</td>
+<td>0.18</td>
+<td>0.30</td>
+<td>0.42</td>
+<td>0.36</td>
+<td>0.42</td>
+<td>0.04</td>
+<td>0.28</td>
+<td class="best">0.77</td>
+</tr>
+</tbody></table></div>
+        </details>
+
+        <div class="result-block">
+          <h3 class="result-heading">Zero-shot transfer to BRIGHT</h3>
+          <p>The BrowseComp+-trained builder constructs one reusable filesystem per domain before seeing any evaluation
+            question. We evaluate 150 questions, with 50 each from AoPS, Biology, and Stack Overflow, using a frozen
+            Qwen3.5-4B answering agent.</p>
+<div class="table-scroll" role="region" aria-label="BRIGHT transfer compared with dense retrieval" tabindex="0">
+<table class="results-table">
+<thead><tr>
+<th scope="col">Domain</th>
+<th scope="col">Dense pass@1</th>
+<th scope="col">Librarian pass@1</th>
+<th scope="col">Dense pass@4</th>
+<th scope="col">Librarian pass@4</th>
+</tr></thead><tbody>
+<tr><th scope="row">AoPS</th>
+<td>0.32</td>
+<td class="best">0.36</td>
+<td>0.38</td>
+<td class="best">0.52</td>
+</tr>
+<tr><th scope="row">Biology</th>
+<td>0.20</td>
+<td class="best">0.35</td>
+<td>0.32</td>
+<td class="best">0.62</td>
+</tr>
+<tr><th scope="row">Stack Overflow</th>
+<td>0.12</td>
+<td class="best">0.86</td>
+<td>0.18</td>
+<td class="best">0.94</td>
+</tr>
+<tr><th scope="row">Average</th>
+<td>0.21</td>
+<td class="best">0.52</td>
+<td>0.29</td>
+<td class="best">0.69</td>
+</tr>
+</tbody></table></div>
+          <p class="table-note">Dense retrieval is the strongest baseline on average. Pass@1 is mean per-response accuracy;
+            pass@4 measures whether at least one of four independently sampled answers is correct. The filesystem is shared across answers.</p>
+          <details class="result-details">
+            <summary>Compare all BRIGHT baselines (pass@1 / pass@4)</summary>
+<div class="table-scroll" role="region" aria-label="All BRIGHT baselines, each cell shows pass@1 then pass@4" tabindex="0">
+<table class="results-table">
+<thead><tr>
+<th scope="col">Domain</th>
+<th scope="col">BM25</th>
+<th scope="col">Dense</th>
+<th scope="col">Hybrid</th>
+<th scope="col">Rerank</th>
+<th scope="col">Agentic</th>
+<th scope="col">Late interaction</th>
+<th scope="col">GraphRAG</th>
+<th scope="col">AutoComp.</th>
+<th scope="col">Librarian</th>
+</tr></thead><tbody>
+<tr><th scope="row">AoPS</th>
+<td>0.31 / 0.38</td>
+<td>0.32 / 0.38</td>
+<td>0.33 / 0.38</td>
+<td>0.32 / 0.38</td>
+<td>0.29 / 0.38</td>
+<td>0.29 / 0.38</td>
+<td>0.13 / 0.16</td>
+<td>0.06 / 0.06</td>
+<td class="best">0.36 / 0.52</td>
+</tr>
+<tr><th scope="row">Biology</th>
+<td>0.18 / 0.28</td>
+<td>0.20 / 0.32</td>
+<td>0.14 / 0.22</td>
+<td>0.14 / 0.26</td>
+<td>0.17 / 0.28</td>
+<td>0.18 / 0.26</td>
+<td>0.05 / 0.06</td>
+<td>0.06 / 0.06</td>
+<td class="best">0.35 / 0.62</td>
+</tr>
+<tr><th scope="row">Stack Overflow</th>
+<td>0.09 / 0.18</td>
+<td>0.12 / 0.18</td>
+<td>0.07 / 0.18</td>
+<td>0.06 / 0.12</td>
+<td>0.07 / 0.18</td>
+<td>0.07 / 0.16</td>
+<td>0.02 / 0.04</td>
+<td>0.02 / 0.02</td>
+<td class="best">0.86 / 0.94</td>
+</tr>
+<tr><th scope="row">Average</th>
+<td>0.19 / 0.28</td>
+<td>0.21 / 0.29</td>
+<td>0.18 / 0.26</td>
+<td>0.17 / 0.25</td>
+<td>0.17 / 0.28</td>
+<td>0.18 / 0.27</td>
+<td>0.06 / 0.09</td>
+<td>0.05 / 0.05</td>
+<td class="best">0.52 / 0.69</td>
+</tr>
+</tbody></table></div>
+          </details>
         </div>
 
-        <div class="results-split">
-          <div class="table-wrap">
-            <h3>Construction Cost</h3>
-            <table class="results-table compact-table">
-              <thead>
-                <tr>
-                  <th>Method</th>
-                  <th>Accuracy</th>
-                  <th>Construction Tokens</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>GraphRAG</td>
-                  <td>0.36</td>
-                  <td>11,923</td>
-                </tr>
-                <tr>
-                  <td>AutoCompaction</td>
-                  <td>0.04</td>
-                  <td>501,637</td>
-                </tr>
-                <tr>
-                  <td>Librarian Agents</td>
-                  <td class="best">0.77</td>
-                  <td>178,926</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="table-note">
-              Construction cost is paid once per corpus. Librarian Agents spend more upfront tokens than GraphRAG, but
-              achieve much higher answer accuracy.
-            </p>
+        <div class="result-block">
+          <h3 class="result-heading">Reusing a filesystem across queries</h3>
+          <p>Construction is paid once per corpus. On 20 synthetic queries per document set, the trained builder’s
+            filesystem raises accuracy from 0.24 to 0.64. The answering agent uses 9,346 tokens per query;
+            including amortized construction brings the total to roughly 18K tokens per query.</p>
+          <div class="results-split">
+            <div class="table-wrap">
+              <h3>Construction cost on BrowseComp+</h3>
+<div class="table-scroll" role="region" aria-label="One-time construction cost per corpus" tabindex="0">
+<table class="results-table compact-table">
+<thead><tr>
+<th scope="col">Memory / retrieval</th>
+<th scope="col">Accuracy</th>
+<th scope="col">Construction tokens</th>
+</tr></thead><tbody>
+<tr><th scope="row">GraphRAG</th>
+<td>0.36</td>
+<td>11,923</td>
+</tr>
+<tr><th scope="row">AutoCompaction</th>
+<td>0.04</td>
+<td>501,637</td>
+</tr>
+<tr><th scope="row">Builder (no fine-tuning)</th>
+<td>0.28</td>
+<td>127,683</td>
+</tr>
+<tr><th scope="row">Librarian Agents</th>
+<td class="best">0.77</td>
+<td>178,926</td>
+</tr>
+</tbody></table></div>
+            </div>
+            <div class="table-wrap">
+              <h3>Twenty queries per document set</h3>
+<div class="table-scroll" role="region" aria-label="Amortized BrowseComp+ performance" tabindex="0">
+<table class="results-table compact-table">
+<thead><tr>
+<th scope="col">Builder</th>
+<th scope="col">Accuracy</th>
+<th scope="col">Answer tokens / query</th>
+<th scope="col">Files / query</th>
+</tr></thead><tbody>
+<tr><th scope="row">Base builder</th>
+<td>0.24</td>
+<td>1,238</td>
+<td>2.72</td>
+</tr>
+<tr><th scope="row">Librarian Agents</th>
+<td class="best">0.64</td>
+<td>9,346</td>
+<td>26.90</td>
+</tr>
+</tbody></table></div>
+            </div>
           </div>
-          <div class="table-wrap">
-            <h3>Amortized BrowseComp+</h3>
-            <table class="results-table compact-table">
-              <thead>
-                <tr>
-                  <th>Builder</th>
-                  <th>Accuracy</th>
-                  <th>Answer Tokens / Q</th>
-                  <th>Files / Q</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Base builder</td>
-                  <td>0.24</td>
-                  <td>1,238</td>
-                  <td>2.72</td>
-                </tr>
-                <tr>
-                  <td>Ours</td>
-                  <td class="best">0.64</td>
-                  <td>9,346</td>
-                  <td>26.90</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="table-note">
-              When the same constructed filesystem is reused across multiple questions, the trained builder reads a
-              richer memory than the base builder and achieves substantially higher accuracy.
-            </p>
+          <div class="figure-grid figure-grid-two reuse-figures">
+<figure class="paper-figure ">
+          <a href="static/images/tokens-per-query.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Recorded construction and navigation tokens per query as the number of queries per corpus increases.">
+            <img src="static/images/tokens-per-query.png" alt="Recorded construction and navigation tokens per query as the number of queries per corpus increases." loading="lazy" decoding="async" width="2200" height="1272" />
+          </a>
+          <figcaption class="figure-caption"><strong>Raw tokens per query.</strong> Construction is spread across repeated queries; the RL answerer still reads a richer workspace.</figcaption>
+        </figure>
+<figure class="paper-figure ">
+          <a href="static/images/tokens-per-correct-answer.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Recorded tokens per expected correct answer after accounting for answer accuracy.">
+            <img src="static/images/tokens-per-correct-answer.png" alt="Recorded tokens per expected correct answer after accounting for answer accuracy." loading="lazy" decoding="async" width="2200" height="1272" />
+          </a>
+          <figcaption class="figure-caption"><strong>Tokens per expected correct answer.</strong> The same costs normalized by full-denominator accuracy. Shading shows paired corpus-bootstrap 95% confidence intervals.</figcaption>
+        </figure>
           </div>
-        </div>
-
-        <div class="table-wrap">
-          <h3>Zero-Shot Transfer to BRIGHT</h3>
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th>Memory / Retrieval</th>
-                <th>StackExchange Avg.</th>
-                <th>Coding Avg.</th>
-                <th>Theorems Avg.</th>
-                <th>Overall Avg.</th>
-                <th>Cost / Query</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Qwen3.5-4B builder</td>
-                <td>0.282</td>
-                <td>0.387</td>
-                <td>0.296</td>
-                <td>0.303</td>
-                <td>920</td>
-              </tr>
-              <tr>
-                <td>Librarian Agents</td>
-                <td>0.663</td>
-                <td>0.644</td>
-                <td>0.475</td>
-                <td class="best">0.613</td>
-                <td>8,109</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="table-note">
-            The BrowseComp+-trained builder transfers to BRIGHT without task-specific training, improving across
-            StackExchange, coding, and theorem-proving domains.
-          </p>
+          <p class="table-note">At ten queries per corpus, Librarian Agents use <strong>33.8% fewer recorded tokens per expected
+            correct answer</strong> than the base builder (RL/base ratio 0.662; 95% CI 0.504–0.836).
+            Raw recorded tokens per query remain higher. These reuse curves report construction and navigation tokens
+            together, with and without normalization by answer quality.</p>
         </div>
       </div>
     </section>
@@ -368,32 +452,26 @@
           </p>
         </div>
 
-        <div class="figure-card">
-          <figure class="paper-figure">
-            <img src="static/images/passk.png" alt="Pass@k curves for BrowseComp+ and BRIGHT." />
-          </figure>
-          <div class="custom-legend" aria-label="Pass@k legend">
-            <span><i class="legend-line base"></i>Base builder</span>
-            <span><i class="legend-line ours"></i>Librarian Agents</span>
-          </div>
-          <p class="figure-caption">
-            <strong>Pass@k.</strong> Additional builder samples improve coverage, but the RL-trained builder starts from
-            a much stronger filesystem even at k=1. Its advantage persists on both BrowseComp+ and BRIGHT, suggesting
-            that training learns a transferable strategy for arranging evidence rather than a one-off layout.
-          </p>
-        </div>
-
-        <p class="figure-bridge">
-          The pass@k trend reflects a central behavior of the builder: it creates breadth so more future queries are
-          covered, while adding hierarchy so fine-grained questions can still be routed to specific evidence. The next
-          examples show how that structure is used when the synthetic memory is helpful but incomplete.
-        </p>
-
         <div class="figure-stack">
           <div class="figure-card">
-            <figure class="paper-figure">
-              <img src="static/images/recovery.png"
-                alt="Provenance fallback example where the answering agent revisits raw files." />
+            <figure class="paper-figure gif-figure" data-gif-figure="recovery">
+              <a class="gif-artwork" href="static/images/recovery.png" target="_blank" rel="noopener noreferrer"
+                aria-label="Open full-size still: Provenance recovery" style="aspect-ratio: 3840 / 2160">
+                <img id="recovery-gif" data-gif-media src="static/images/recovery.png"
+                  data-gif-src="static/animations/recovery.gif" data-still-src="static/images/recovery.png"
+                  alt="Provenance fallback example where the answering agent revisits raw files." width="3840" height="2160" loading="lazy" decoding="async" />
+                <img class="gif-print-still" src="static/images/recovery.png" alt="" aria-hidden="true"
+                  width="3840" height="2160" loading="lazy" />
+              </a>
+              <figcaption class="gif-controls" aria-label="Provenance recovery figure controls">
+                <button class="gif-toggle" data-gif-toggle type="button" aria-controls="recovery-gif">
+                  <span class="gif-toggle-icon" aria-hidden="true"></span>
+                  <span data-gif-toggle-label>Play animation</span>
+                </button>
+                <a href="static/animations/recovery.gif" download="librarian-agents-recovery.gif">Download GIF</a>
+                <a href="static/images/recovery.png" target="_blank" rel="noopener noreferrer">Still figure</a>
+                <span class="gif-status" data-gif-status role="status" hidden></span>
+              </figcaption>
             </figure>
             <p class="figure-caption">
               <strong>Recovery through provenance.</strong> On a fine-grained BrowseComp+ query, the answering agent
@@ -409,32 +487,47 @@
           </p>
 
           <div class="figure-card">
-            <figure class="paper-figure">
-              <img src="static/images/rl-vs-base.jpeg"
-                alt="Qualitative comparison between the RL-trained builder and the base builder." />
+            <figure class="paper-figure gif-figure" data-gif-figure="qualitative">
+              <a class="gif-artwork" href="static/images/rl-vs-base.png" target="_blank" rel="noopener noreferrer"
+                aria-label="Open full-size still: RL and base comparison" style="aspect-ratio: 3840 / 2160">
+                <img id="qualitative-gif" data-gif-media src="static/images/rl-vs-base.png"
+                  data-gif-src="static/animations/qualitative.gif" data-still-src="static/images/rl-vs-base.png"
+                  alt="Qualitative comparison between the RL-trained builder and the base builder." width="3840" height="2160" loading="lazy" decoding="async" />
+                <img class="gif-print-still" src="static/images/rl-vs-base.png" alt="" aria-hidden="true"
+                  width="3840" height="2160" loading="lazy" />
+              </a>
+              <figcaption class="gif-controls" aria-label="RL and base comparison figure controls">
+                <button class="gif-toggle" data-gif-toggle type="button" aria-controls="qualitative-gif">
+                  <span class="gif-toggle-icon" aria-hidden="true"></span>
+                  <span data-gif-toggle-label>Play animation</span>
+                </button>
+                <a href="static/animations/qualitative.gif" download="librarian-agents-qualitative.gif">Download GIF</a>
+                <a href="static/images/rl-vs-base.png" target="_blank" rel="noopener noreferrer">Still figure</a>
+                <span class="gif-status" data-gif-status role="status" hidden></span>
+              </figcaption>
             </figure>
             <p class="figure-caption">
-              <strong>RL vs. base construction.</strong> In the Zama township example, the RL-trained builder surfaces
-              dedicated files for the school history and related township facts, allowing the answerer to reach the
-              correct answer. The base builder leaves a more fragmented structure and falls back to the wrong evidence.
+              <strong>RL vs. base construction.</strong> On the same BrowseComp+ document set, the trained builder creates
+              a broader, more coherent set of query-relevant files. The base builder leaves a fragmented organization
+              that is harder for the answering agent to navigate.
             </p>
           </div>
         </div>
 
         <p class="figure-bridge">
-          These behaviors are encouraged directly by the training objective. Each filesystem edit receives credit when
-          it improves the answering agent's expected success, while unnecessary construction cost is penalized.
+          GRPO trains the builder using periodic changes in answerability and terminal answer correctness. The primary
+          experiment applies no explicit construction-cost, navigation-cost, or filesystem-structure penalties, so the
+          richer organization emerges from optimizing downstream answering success.
         </p>
 
         <div class="figure-card narrow-figure">
           <figure class="paper-figure">
-            <img src="static/images/training-reward.png"
-              alt="Training curve showing total rollout reward increasing over training steps." />
+            <a href="static/images/training-reward.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure"><img src="static/images/training-reward.png"
+              alt="Training curve showing total rollout reward increasing over training steps." width="2400" height="1080" loading="lazy" decoding="async" /></a>
           </figure>
           <p class="figure-caption">
-            <strong>Training curve.</strong> During GRPO on BrowseComp+ training splits, cumulative dense rollout reward
-            trends upward despite noisy individual rollouts. This is the intended signal: edits are rewarded when they
-            improve downstream answer success after construction cost is included.
+            <strong>Training curve.</strong> Aggregate rollout reward increases during GRPO training on BrowseComp+ as
+            the builder learns to construct more answerable memories. The curve is smoothed with an exponential moving average.
           </p>
         </div>
       </div>
@@ -464,8 +557,9 @@
         <h2 class="section-title">BibTeX</h2>
         <pre class="bibtex"><code>@misc{singh2026librarianagents,
   title = {Librarian Agents: Anticipatory Filesystem Construction via Reinforcement Learning},
-  author = {},
-  year = {2026}
+  author = {Anikait Singh and Teresa Zhang and Yoonho Lee and Roshen Sanjay Nair and Aviral Kumar and Chelsea Finn},
+  year = {2026},
+  url = {https://librarian-agents.github.io/}
 }</code></pre>
       </div>
     </section>

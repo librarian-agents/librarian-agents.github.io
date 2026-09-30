@@ -636,3 +636,87 @@ sup {
     padding: 0.55rem 0.58rem;
   }
 }
+
+
+/* Current result tables retain readable columns on small screens. */
+.result-heading {
+  margin: 1.5rem 0 0.65rem;
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 600;
+}
+
+.result-block {
+  margin-top: 2.5rem;
+}
+
+.result-block > p {
+  margin-bottom: 1rem;
+}
+
+.table-scroll {
+  max-width: 100%;
+  margin-top: 0.8rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.table-scroll:focus-visible,
+.result-details summary:focus-visible {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 3px;
+}
+
+.results-table tbody th {
+  border-bottom: 1px solid var(--divider-color);
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.results-table td {
+  white-space: nowrap;
+}
+
+.result-details {
+  margin: 1rem 0;
+}
+
+.result-details summary {
+  width: fit-content;
+  padding: 0.35rem 0;
+  color: var(--theme-color);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.reuse-figures {
+  align-items: start;
+}
+
+.reuse-figures > figure {
+  min-width: 0;
+}
+
+.paper-figure a {
+  display: block;
+  cursor: zoom-in;
+}
+
+.section {
+  scroll-margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .section-heading p,
+  .content p,
+  .figure-bridge {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .section-nav { transition: none; }
+}
