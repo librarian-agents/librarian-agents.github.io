@@ -96,10 +96,12 @@
 
     <section class="section abstract-section" id="abstract">
       <div class="container prose-container">
-        <h2 class="section-title">Abstract</h2>
-        <div class="content"><p>
+        <div class="abstract-card">
+          <h2 class="section-title">Abstract</h2>
+          <div class="content"><p>
               Reasoning over long document contexts remains a challenge for large language models (LLMs). Standard retrieval methods are inherently reactive, bottlenecking agents with complex, cross-document reasoning at inference time. Existing approaches that precompute corpus structure, such as knowledge graphs, often fall short because they rely on rigid heuristics. Instead, can we allow agents to perform <em>anticipatory directed curation</em>: proactively reorganizing unstructured document corpora to efficiently serve diverse future queries. This pre-computation synthesizes and restructures information within documents in advance, significantly improving an answering agent's downstream performance. While agentic harnesses (e.g., Claude Code) are heavily trained to navigate and extend filesystems while solving the task currently in front of them, they do not pre-construct reusable workspaces in anticipation of future queries. We introduce Librarian Agents, a novel framework that restructures unstructured corpora into filesystem-based workspace arranged around the operations that LLM agents already perform well, such as reading summaries and following links. Librarian Agents is optimized to maximize downstream query success rate via end-to-end reinforcement learning. Empirically, Librarian Agents improves accuracy over the best performing baseline by 33 points on BrowseComp+ and additionally generalizes to out-of-distribution corpora such as BRIGHT with a 31 point increase on average.
             </p></div>
+        </div>
       </div>
     </section>
 
