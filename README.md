@@ -10,7 +10,7 @@ Use another port if 8000 is already in use. No build step is required.
 ## Paper and figures
 
 - `static/pdfs/librarian-agents.pdf` is an unchanged copy of the supplied `arxiv_version.pdf`, linked from the Paper (PDF) button.
-- `static/pdfs/librarian-agents-slides.pdf` is an unchanged copy of the supplied `Talk_Librarian_Agents.pdf`, linked from the Slides button.
+- `static/pdfs/librarian-agents-slides.pdf` is a PDF export of the supplied `Engram Talk_ Librarian Agents.pptx`, linked from the Slides button. GIFs show their last fully displayed frame before any fade or reset, and slide animations show their final state.
 - The title, author list, abstract, results, and training description match the current LaTeX project.
 - Figures come from the current LaTeX project's `figures/` directory. PDF figures are rendered as PNGs;
   original full-size images are kept in `static/images/`.
