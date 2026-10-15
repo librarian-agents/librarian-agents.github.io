@@ -1,6 +1,6 @@
 # Librarian Agents Project Page
 
-Static project page for **Librarian Agents: Training LLMs to Curate Workspaces that Anticipate Future Queries**.
+Static project page for **Librarian Agents: Training LLMs to Curate Long-Context Workspaces that Anticipate Future Queries**.
 
 ## Local preview
 
@@ -9,7 +9,7 @@ Use another port if 8000 is already in use. No build step is required.
 
 ## Paper and figures
 
-- `static/pdfs/librarian-agents.pdf` is an unchanged copy of the supplied `Librarian_Agents__Arxiv_.pdf`, used as the paper download for now.
+- `static/pdfs/librarian-agents.pdf` is an unchanged copy of the supplied `arxiv_version.pdf`, linked from the Paper (PDF) button.
 - `static/pdfs/librarian-agents-slides.pdf` is an unchanged copy of the supplied `Talk_Librarian_Agents.pdf`, linked from the Slides button.
 - The title, author list, abstract, results, and training description match the current LaTeX project.
 - Figures come from the current LaTeX project's `figures/` directory. PDF figures are rendered as PNGs;
