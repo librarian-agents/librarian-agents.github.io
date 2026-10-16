@@ -9,7 +9,7 @@ Use another port if 8000 is already in use. No build step is required.
 
 ## Paper and figures
 
-- `static/pdfs/librarian-agents.pdf` is an unchanged copy of the supplied `arxiv_version.pdf`, linked from the Paper (PDF) button.
+- The Paper (PDF) button links to [the arXiv PDF](https://arxiv.org/pdf/2610.22273). `static/pdfs/librarian-agents.pdf` remains an unchanged copy of the supplied `arxiv_version.pdf`.
 - `static/pdfs/librarian-agents-slides.pdf` is a PDF export of the supplied `Engram Talk_ Librarian Agents.pptx`, linked from the Slides button. GIFs show their last fully displayed frame before any fade or reset, and slide animations show their final state.
 - The title, author list, abstract, results, and training description match the current LaTeX project.
 - Figures come from the current LaTeX project's `figures/` directory. PDF figures are rendered as PNGs;
@@ -20,7 +20,7 @@ Use another port if 8000 is already in use. No build step is required.
 - Reuse plots show raw token costs alongside tokens per expected correct answer.
 - The observed reuse evaluation has 443 questions across 50 corpora with 7–10 questions per corpus; the 20-query cost is a projection.
 
-The paper download and research-code URL supplied in the LaTeX project are linked. Add a public arXiv URL when available.
+The arXiv paper and research-code URL supplied in the LaTeX project are linked.
 
 ## Page flow
 
